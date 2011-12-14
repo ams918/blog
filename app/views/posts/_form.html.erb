@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Titulo:</b>
+  <%= @post.titulo %>
+</p>
+
+<p>
+  <b>Conteudo:</b>
+  <%= @post.conteudo %>
+</p>
+
+<h2>Comentarios</h2>
+
+<%= @post.comentarios.each do |comentario| %>
+<p>
+	</b>Autor:</b>
+	<%= comentario.autor %>
+</p>
+<p>
+	</b>Comentario:</b>
+	<%= comentario.conteudo %>
+</p>
+
+<hr/>
+
+<% end %>
+<h2>Comentario</h2>
+<%= form_for([@post, @post.comentario.build]) do |f| %>
+<div class="field">
+	<%= f.label :autor %></br>
+	<%= f.text_field :autor %>
+</div>
+<div class="field">
+	<%= f.label :conteudo %></br>
+	<%= f.text_area :conteudo %>
+</div>
+<div class="actions">
+	<%= f.submit %>
+</div>
+
+</br>
+
+<%= link_to 'Editar', edit_post_path(@post) %>
+<%= link_to 'Voltar', posts_path %>
